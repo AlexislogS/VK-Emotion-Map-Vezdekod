@@ -17,7 +17,7 @@ final class EmotionCell: UICollectionViewCell {
     static let reuseID = "emotionCell"
     
     func configure(with theme: Theme) {
-        emotionLabel.text = theme.emotion
+        emotionLabel.text = String(theme.emotion.prefix(1))
         themeLabel.text = theme.themeEmotion
         themeTitleLabel.text = theme.title
     }

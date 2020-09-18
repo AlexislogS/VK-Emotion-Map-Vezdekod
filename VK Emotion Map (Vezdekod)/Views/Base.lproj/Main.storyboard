@@ -142,6 +142,29 @@
                                     <action selector="closeMap" destination="BYZ-38-t0r" eventType="touchUpInside" id="S6f-JL-AZ1"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLS-yf-TU8">
+                                <rect key="frame" x="86" y="94" width="203" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃 Хорошее настроение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8X0-pd-8wz">
+                                        <rect key="frame" x="12" y="9" width="179" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8X0-pd-8wz" secondAttribute="trailing" constant="12" id="2Sz-5T-DrI"/>
+                                    <constraint firstItem="8X0-pd-8wz" firstAttribute="leading" secondItem="dLS-yf-TU8" secondAttribute="leading" constant="12" id="7Yk-Wu-DkB"/>
+                                    <constraint firstAttribute="height" constant="36" id="9ig-mW-5on"/>
+                                    <constraint firstItem="8X0-pd-8wz" firstAttribute="centerY" secondItem="dLS-yf-TU8" secondAttribute="centerY" id="Tjp-wo-qMt"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -150,10 +173,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FBW-3d-MYN" secondAttribute="bottom" constant="145" id="Pi7-kt-Y2U"/>
                             <constraint firstAttribute="trailing" secondItem="FBW-3d-MYN" secondAttribute="trailing" id="alv-Mp-71o"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iYG-2A-S6i"/>
+                            <constraint firstItem="dLS-yf-TU8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mD4-WW-cNm"/>
                             <constraint firstItem="yv5-3c-jJO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="mY5-nB-q73"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qaA-xb-vDw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ANK-2L-ju1" secondAttribute="trailing" id="xFB-Ni-gg5"/>
                             <constraint firstItem="ANK-2L-ju1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yVC-Nf-4CU"/>
+                            <constraint firstItem="dLS-yf-TU8" firstAttribute="centerY" secondItem="yv5-3c-jJO" secondAttribute="centerY" id="zt4-8d-feD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -161,17 +186,19 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="pex-Ll-per"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomView" destination="ANK-2L-ju1" id="eqg-t7-5YC"/>
                         <outlet property="emotionCollectionView" destination="x1w-Dy-1lK" id="pdU-2u-zsO"/>
                         <outlet property="emotionMap" destination="FBW-3d-MYN" id="Qer-wW-bPg"/>
                         <outlet property="emotionSearch" destination="dFz-36-AfM" id="9sG-s5-S5c"/>
-                        <outlet property="emotionView" destination="ANK-2L-ju1" id="eqg-t7-5YC"/>
                         <outlet property="emotionsViewHight" destination="7d9-Os-htL" id="yKk-Tf-Y3m"/>
+                        <outlet property="topEmotionLabel" destination="8X0-pd-8wz" id="7gm-4Q-6hF"/>
+                        <outlet property="topView" destination="dLS-yf-TU8" id="fXN-eH-wqx"/>
                         <segue destination="Ljf-Mx-Bbo" kind="show" identifier="showThemeFeed" id="9f6-5Y-I4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="94"/>
+            <point key="canvasLocation" x="1128.8" y="93.842364532019715"/>
         </scene>
         <!--Новости-->
         <scene sceneID="re0-6j-uH2">

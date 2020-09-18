@@ -12,13 +12,15 @@ import CoreLocation
 
 final class MapViewController: UIViewController {
 
-    @IBOutlet weak var emotionView: UIView!
+    @IBOutlet private weak var topView: UIView!
+    @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var emotionsViewHight: NSLayoutConstraint! {
         didSet {
             defaultEmotionsViewHight = emotionsViewHight.constant
         }
     }
     
+    @IBOutlet private weak var topEmotionLabel: UILabel!
     @IBOutlet private weak var emotionMap: MKMapView!
     @IBOutlet private weak var emotionCollectionView: UICollectionView!
     @IBOutlet private weak var emotionSearch: UISearchBar!
@@ -75,7 +77,7 @@ final class MapViewController: UIViewController {
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         transition.type = CATransitionType.moveIn
         transition.subtype = from
-        self.emotionView.layer.add(transition, forKey: kCATransition)
+        self.bottomView.layer.add(transition, forKey: kCATransition)
         completion()
     }
     
@@ -169,6 +171,10 @@ extension MapViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let theme = isFiltering ? filteredThemes[indexPath.item] : themes[indexPath.item]
+        if topView.isHidden {
+            topView.isHidden = false
+        }
+        topEmotionLabel.text = theme.emotion
         if let annotation = annotations.filter({ $0.subtitle == theme.title }).first {
             if previousRow == indexPath.row {
                 emotionMap.selectAnnotation(annotation, animated: true)
