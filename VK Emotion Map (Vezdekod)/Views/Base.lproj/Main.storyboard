@@ -101,17 +101,20 @@
                                     <searchBar contentMode="redraw" placeholder="Поиск по теме и настроению" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-36-AfM">
                                         <rect key="frame" x="8" y="18" width="359" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="4a7-pg-1Vg"/>
+                                        </connections>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="x1w-Dy-1lK" secondAttribute="trailing" id="1lR-dr-hnW"/>
                                     <constraint firstAttribute="trailing" secondItem="dFz-36-AfM" secondAttribute="trailing" constant="8" id="33r-YO-PQ1"/>
                                     <constraint firstAttribute="height" constant="170" id="7d9-Os-htL"/>
                                     <constraint firstItem="x1w-Dy-1lK" firstAttribute="leading" secondItem="ANK-2L-ju1" secondAttribute="leading" constant="4" id="GLZ-ZP-god"/>
-                                    <constraint firstAttribute="bottom" secondItem="x1w-Dy-1lK" secondAttribute="bottom" id="iTa-6g-xGw"/>
+                                    <constraint firstItem="x1w-Dy-1lK" firstAttribute="top" secondItem="dFz-36-AfM" secondAttribute="bottom" id="K4l-tt-UAv"/>
                                     <constraint firstItem="dFz-36-AfM" firstAttribute="top" secondItem="ANK-2L-ju1" secondAttribute="top" constant="18" id="lMh-Ee-eoi"/>
-                                    <constraint firstItem="x1w-Dy-1lK" firstAttribute="top" secondItem="dFz-36-AfM" secondAttribute="bottom" id="m6N-fF-ab8"/>
                                     <constraint firstItem="dFz-36-AfM" firstAttribute="leading" secondItem="ANK-2L-ju1" secondAttribute="leading" constant="8" id="rSV-aP-0T0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -123,8 +126,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FBW-3d-MYN" secondAttribute="bottom" constant="145" id="30I-q6-cOE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ANK-2L-ju1" secondAttribute="bottom" id="Iv4-Kg-OHU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FBW-3d-MYN" secondAttribute="bottom" constant="145" id="Pi7-kt-Y2U"/>
                             <constraint firstAttribute="trailing" secondItem="FBW-3d-MYN" secondAttribute="trailing" id="alv-Mp-71o"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iYG-2A-S6i"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qaA-xb-vDw"/>
@@ -134,9 +137,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emotionCollectionView" destination="x1w-Dy-1lK" id="9Ee-Dd-PQE"/>
-                        <outlet property="emotionMap" destination="FBW-3d-MYN" id="wgO-5I-POe"/>
-                        <outlet property="emotionSearch" destination="dFz-36-AfM" id="QTa-AN-fUG"/>
+                        <outlet property="emotionView" destination="ANK-2L-ju1" id="eqg-t7-5YC"/>
+                        <outlet property="emotionsViewHight" destination="7d9-Os-htL" id="yKk-Tf-Y3m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
