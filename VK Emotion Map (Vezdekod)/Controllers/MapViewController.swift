@@ -23,11 +23,11 @@ final class MapViewController: UIViewController {
     @IBOutlet private weak var emotionCollectionView: UICollectionView!
     @IBOutlet private weak var emotionSearch: UISearchBar!
     
-    private let regionInMeters = 10_000.0
     private var defaultEmotionsViewHight: CGFloat = 0
     private let themes = Themes.getThemes
     private var filteredThemes = [Theme]()
     private var annotations = [MKPointAnnotation]()
+    private var defaultRegion: MKCoordinateRegion?
     
     private var isFiltering: Bool {
         guard let text = emotionSearch.text else { return false }
@@ -40,11 +40,11 @@ final class MapViewController: UIViewController {
         addAnnotations()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleDidShow(notification:)),
-                                               name: UITextField.keyboardDidShowNotification,
+                                               name: UITextField.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleDidHide),
-                                               name: UITextField.keyboardDidHideNotification,
+                                               name: UITextField.keyboardWillHideNotification,
                                                object: nil)
     }
     
@@ -62,7 +62,12 @@ final class MapViewController: UIViewController {
     private func showCity(name: String) {
         CLGeocoder().geocodeAddressString(name) { (placemarks, error) in
             if let location = placemarks?.first?.location?.coordinate {
-                self.emotionMap.setRegion(MKCoordinateRegion(center: location, latitudinalMeters: self.regionInMeters, longitudinalMeters: self.regionInMeters), animated: true)
+                let regionInMeters = 10_000.0
+                self.defaultRegion = MKCoordinateRegion(center: location,
+                                                       latitudinalMeters: regionInMeters,
+                                                       longitudinalMeters: regionInMeters)
+                self.emotionMap.setRegion(self.defaultRegion!,
+                                          animated: true)
             }
         }
     }
@@ -144,12 +149,20 @@ extension MapViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let theme = isFiltering ? filteredThemes[indexPath.item] : themes[indexPath.item]
-        annotations.filter { $0.subtitle == theme.title }.forEach { emotionMap.selectAnnotation($0, animated: true)
+        if let annotation = annotations.filter({ $0.subtitle == theme.title }).first {
+            emotionMap.selectAnnotation(annotation, animated: true)
             let rangeInMeters = 1000.0
-            let region = MKCoordinateRegion(center: $0.coordinate,
+            let region = MKCoordinateRegion(center: annotation.coordinate,
                                             latitudinalMeters: rangeInMeters,
                                             longitudinalMeters: rangeInMeters)
-            emotionMap.setRegion(region, animated: true)
+            if emotionMap.region.center.latitude != defaultRegion?.center.latitude &&
+                emotionMap.region.center.longitude != defaultRegion?.center.longitude {
+                emotionMap.setRegion(self.defaultRegion!,
+                                     animated: true)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.emotionMap.setRegion(region, animated: true)
+            }
         }
     }
 }
