@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA76AF18251547DC00AA8F2D /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76AF17251547DC00AA8F2D /* NewsViewController.swift */; };
+		EA76AF1A25154C6D00AA8F2D /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA76AF1925154C6D00AA8F2D /* ThemeViewController.swift */; };
 		EA89478A2514B8420079E96E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947892514B8420079E96E /* AppDelegate.swift */; };
 		EA89478C2514B8420079E96E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89478B2514B8420079E96E /* SceneDelegate.swift */; };
 		EA89478E2514B8420079E96E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA89478D2514B8420079E96E /* MapViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA76AF17251547DC00AA8F2D /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		EA76AF1925154C6D00AA8F2D /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		EA8947862514B8420079E96E /* VK Emotion Map (Vezdekod).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Emotion Map (Vezdekod).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8947892514B8420079E96E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA89478B2514B8420079E96E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +95,9 @@
 		EA89479E2514C0B40079E96E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EA76AF17251547DC00AA8F2D /* NewsViewController.swift */,
 				EA89478D2514B8420079E96E /* MapViewController.swift */,
+				EA76AF1925154C6D00AA8F2D /* ThemeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -223,8 +229,10 @@
 				EA89478E2514B8420079E96E /* MapViewController.swift in Sources */,
 				EA89478A2514B8420079E96E /* AppDelegate.swift in Sources */,
 				EA8947A72514E3BF0079E96E /* Theme.swift in Sources */,
+				EA76AF18251547DC00AA8F2D /* NewsViewController.swift in Sources */,
 				EA8947AB2514F2260079E96E /* Themes.swift in Sources */,
 				EA89478C2514B8420079E96E /* SceneDelegate.swift in Sources */,
+				EA76AF1A25154C6D00AA8F2D /* ThemeViewController.swift in Sources */,
 				EA8947AE251508330079E96E /* String+.swift in Sources */,
 				EA8947B32515104C0079E96E /* UIImage+.swift in Sources */,
 				EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */,

@@ -8,6 +8,10 @@
 
 import Foundation
 
-enum Constants {
-    static let annotationID = "emotionAnnotationView"
+enum SegueID: String {
+    case showThemeFeed
+}
+
+enum ReuseID: String {
+    case emotionAnnotationView
 }

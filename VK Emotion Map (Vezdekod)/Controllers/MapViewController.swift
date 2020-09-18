@@ -24,10 +24,11 @@ final class MapViewController: UIViewController {
     @IBOutlet private weak var emotionSearch: UISearchBar!
     
     private var defaultEmotionsViewHight: CGFloat = 0
+    private var annotations = [MKPointAnnotation]()
+    private var defaultRegion: MKCoordinateRegion!
+    private var previousRow: Int?
     private let themes = Themes.getThemes
     private var filteredThemes = [Theme]()
-    private var annotations = [MKPointAnnotation]()
-    private var defaultRegion: MKCoordinateRegion?
     
     private var isFiltering: Bool {
         guard let text = emotionSearch.text else { return false }
@@ -48,6 +49,25 @@ final class MapViewController: UIViewController {
                                                object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueID.showThemeFeed.rawValue,
+            let annotation = emotionMap.selectedAnnotations.first,
+            let themeVC = segue.destination as? ThemeViewController {
+            if let title = annotation.subtitle {
+                themeVC.title = title
+            }
+        }
+    }
+    
+    @IBAction func closeMap() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func addAnimationToEmotionView(from: CATransitionSubtype,
                                            completion: () -> Void) {
         let transition = CATransition()
@@ -66,7 +86,7 @@ final class MapViewController: UIViewController {
                 self.defaultRegion = MKCoordinateRegion(center: location,
                                                        latitudinalMeters: regionInMeters,
                                                        longitudinalMeters: regionInMeters)
-                self.emotionMap.setRegion(self.defaultRegion!,
+                self.emotionMap.setRegion(self.defaultRegion,
                                           animated: true)
             }
         }
@@ -150,20 +170,24 @@ extension MapViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let theme = isFiltering ? filteredThemes[indexPath.item] : themes[indexPath.item]
         if let annotation = annotations.filter({ $0.subtitle == theme.title }).first {
-            emotionMap.selectAnnotation(annotation, animated: true)
+            if previousRow == indexPath.row {
+                emotionMap.selectAnnotation(annotation, animated: true)
+                return
+            }
             let rangeInMeters = 1000.0
             let region = MKCoordinateRegion(center: annotation.coordinate,
                                             latitudinalMeters: rangeInMeters,
                                             longitudinalMeters: rangeInMeters)
             if emotionMap.region.center.latitude != defaultRegion?.center.latitude &&
                 emotionMap.region.center.longitude != defaultRegion?.center.longitude {
-                emotionMap.setRegion(self.defaultRegion!,
+                emotionMap.setRegion(self.defaultRegion,
                                      animated: true)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.emotionMap.setRegion(region, animated: true)
             }
         }
+        previousRow = indexPath.row
     }
 }
 
@@ -176,11 +200,11 @@ extension MapViewController: MKMapViewDelegate {
         
         guard annotation is MKPointAnnotation else { return nil }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationID) as? MKPinAnnotationView
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: ReuseID.emotionAnnotationView.rawValue) as? MKPinAnnotationView
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation,
-                                                 reuseIdentifier: Constants.annotationID)
+                                                 reuseIdentifier: ReuseID.emotionAnnotationView.rawValue)
             annotationView?.canShowCallout = true
         } else {
             annotationView!.annotation = annotation
@@ -191,5 +215,9 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        performSegue(withIdentifier: SegueID.showThemeFeed.rawValue, sender: nil)
     }
 }
