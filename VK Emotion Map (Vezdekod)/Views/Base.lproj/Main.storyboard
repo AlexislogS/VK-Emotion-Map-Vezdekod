@@ -35,7 +35,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmotionCell" id="oqP-dh-htx">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="emotionCell" id="oqP-dh-htx" customClass="EmotionCell" customModule="VK_Emotion_Map__Vezdekod_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="96"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Xat-c4-QHX">
@@ -95,8 +95,17 @@
                                                         <constraint firstItem="0DR-nA-P9O" firstAttribute="leading" secondItem="Xat-c4-QHX" secondAttribute="leading" constant="4" id="p2R-aN-TCX"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
+                                                <connections>
+                                                    <outlet property="emotionLabel" destination="DLI-Nv-oPb" id="eXm-bn-gID"/>
+                                                    <outlet property="themeLabel" destination="Fub-VY-3P6" id="5dp-0l-J1x"/>
+                                                    <outlet property="themeTitleLabel" destination="0DR-nA-P9O" id="LYz-mi-ugY"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="wCO-N9-haS"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Kl3-NN-jnc"/>
+                                        </connections>
                                     </collectionView>
                                     <searchBar contentMode="redraw" placeholder="Поиск по теме и настроению" translatesAutoresizingMaskIntoConstraints="NO" id="dFz-36-AfM">
                                         <rect key="frame" x="8" y="18" width="359" height="56"/>
@@ -123,13 +132,19 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yv5-3c-jJO">
+                                <rect key="frame" x="327" y="52" width="32" height="32"/>
+                                <state key="normal" image="dismiss_dark_24"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yv5-3c-jJO" secondAttribute="trailing" constant="16" id="2z7-1T-YDg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ANK-2L-ju1" secondAttribute="bottom" id="Iv4-Kg-OHU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FBW-3d-MYN" secondAttribute="bottom" constant="145" id="Pi7-kt-Y2U"/>
                             <constraint firstAttribute="trailing" secondItem="FBW-3d-MYN" secondAttribute="trailing" id="alv-Mp-71o"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iYG-2A-S6i"/>
+                            <constraint firstItem="yv5-3c-jJO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="mY5-nB-q73"/>
                             <constraint firstItem="FBW-3d-MYN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qaA-xb-vDw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ANK-2L-ju1" secondAttribute="trailing" id="xFB-Ni-gg5"/>
                             <constraint firstItem="ANK-2L-ju1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yVC-Nf-4CU"/>
@@ -147,6 +162,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dismiss_dark_24" width="32" height="32"/>
         <image name="↳ Background Color" width="24" height="24"/>
         <image name="↳ Image" width="64" height="64"/>
     </resources>

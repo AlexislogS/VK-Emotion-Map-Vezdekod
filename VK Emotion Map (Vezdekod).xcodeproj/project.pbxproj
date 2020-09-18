@@ -13,6 +13,8 @@
 		EA8947912514B8420079E96E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA89478F2514B8420079E96E /* Main.storyboard */; };
 		EA8947932514B8430079E96E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA8947922514B8430079E96E /* Assets.xcassets */; };
 		EA8947962514B8430079E96E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8947942514B8430079E96E /* LaunchScreen.storyboard */; };
+		EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A22514E10C0079E96E /* EmotionCell.swift */; };
+		EA8947A72514E3BF0079E96E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A62514E3BF0079E96E /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EA8947922514B8430079E96E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA8947952514B8430079E96E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA8947972514B8430079E96E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA8947A22514E10C0079E96E /* EmotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCell.swift; sourceTree = "<group>"; };
+		EA8947A62514E3BF0079E96E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		EA8947882514B8420079E96E /* VK Emotion Map (Vezdekod) */ = {
 			isa = PBXGroup;
 			children = (
+				EA8947A82514E4110079E96E /* Models */,
 				EA89479F2514C0BA0079E96E /* Views */,
 				EA89479E2514C0B40079E96E /* Controllers */,
 				EA8947A02514C0D10079E96E /* Resources */,
@@ -85,6 +90,7 @@
 		EA89479F2514C0BA0079E96E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA8947A92514E56E0079E96E /* Cells */,
 				EA89478F2514B8420079E96E /* Main.storyboard */,
 			);
 			path = Views;
@@ -105,6 +111,22 @@
 				EA8947972514B8430079E96E /* Info.plist */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		EA8947A82514E4110079E96E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EA8947A62514E3BF0079E96E /* Theme.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EA8947A92514E56E0079E96E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EA8947A22514E10C0079E96E /* EmotionCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +202,9 @@
 			files = (
 				EA89478E2514B8420079E96E /* MapViewController.swift in Sources */,
 				EA89478A2514B8420079E96E /* AppDelegate.swift in Sources */,
+				EA8947A72514E3BF0079E96E /* Theme.swift in Sources */,
 				EA89478C2514B8420079E96E /* SceneDelegate.swift in Sources */,
+				EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

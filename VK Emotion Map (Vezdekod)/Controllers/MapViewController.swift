@@ -22,9 +22,11 @@ final class MapViewController: UIViewController {
     @IBOutlet private weak var emotionSearch: UISearchBar!
     
     private var defaultEmotionsViewHight: CGFloat = 0
+    private var themes = [Theme]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        themes.append(Theme(title: "Музыка", themeEmotion: "🎧", emotion: "😂"))
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleDidShow(notification:)),
                                                name: UITextField.keyboardDidShowNotification,
@@ -71,3 +73,18 @@ extension MapViewController: UISearchBarDelegate {
     }
 }
 
+    // MARK: - UICollectionViewDataSource
+
+extension MapViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return themes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmotionCell.reuseID, for: indexPath) as! EmotionCell
+        let theme = themes[indexPath.item]
+        cell.configure(with: theme)
+        return cell
+    }
+}
