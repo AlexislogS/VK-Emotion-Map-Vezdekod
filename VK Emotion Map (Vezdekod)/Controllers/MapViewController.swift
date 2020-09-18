@@ -26,10 +26,17 @@ final class MapViewController: UIViewController {
     private let regionInMeters = 10_000.0
     private var defaultEmotionsViewHight: CGFloat = 0
     private let themes = Themes.getThemes
+    private var filteredThemes = [Theme]()
+    private var annotations = [MKPointAnnotation]()
+    
+    private var isFiltering: Bool {
+        guard let text = emotionSearch.text else { return false }
+        return !text.isEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showSPBMap()
+        showCity(name: "St. Petersburg")
         addAnnotations()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleDidShow(notification:)),
@@ -52,9 +59,8 @@ final class MapViewController: UIViewController {
         completion()
     }
     
-    private func showSPBMap() {
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString("St. Petersburg") { (placemarks, error) in
+    private func showCity(name: String) {
+        CLGeocoder().geocodeAddressString(name) { (placemarks, error) in
             if let location = placemarks?.first?.location?.coordinate {
                 self.emotionMap.setRegion(MKCoordinateRegion(center: location, latitudinalMeters: self.regionInMeters, longitudinalMeters: self.regionInMeters), animated: true)
             }
@@ -62,7 +68,6 @@ final class MapViewController: UIViewController {
     }
     
     private func addAnnotations() {
-        var annotations = [MKPointAnnotation]()
         for theme in themes {
             let annotation = MKPointAnnotation()
             annotation.title = theme.themeEmotion
@@ -95,24 +100,14 @@ extension MapViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-    }
-}
-
-    // MARK: - UICollectionViewDataSource
-
-extension MapViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        return themes.count
+        filterPersons(for: searchBar.text!)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmotionCell.reuseID, for: indexPath) as! EmotionCell
-        let theme = themes[indexPath.item]
-        cell.configure(with: theme)
-        return cell
+    private func filterPersons(for title: String) {
+        filteredThemes = themes.filter {
+            $0.title.lowercased().contains(title.lowercased())
+        }
+        emotionCollectionView.reloadData()
     }
 }
 
@@ -125,14 +120,51 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+    // MARK: - UICollectionViewDataSource
+
+extension MapViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return isFiltering ? filteredThemes.count : themes.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmotionCell.reuseID, for: indexPath) as! EmotionCell
+        let theme = isFiltering ? filteredThemes[indexPath.item] : themes[indexPath.item]
+        cell.configure(with: theme)
+        return cell
+    }
+}
+
+    // MARK: - UICollectionViewDelegate
+
+extension MapViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let theme = isFiltering ? filteredThemes[indexPath.item] : themes[indexPath.item]
+        annotations.filter { $0.subtitle == theme.title }.forEach { emotionMap.selectAnnotation($0, animated: true)
+            let rangeInMeters = 1000.0
+            let region = MKCoordinateRegion(center: $0.coordinate,
+                                            latitudinalMeters: rangeInMeters,
+                                            longitudinalMeters: rangeInMeters)
+            emotionMap.setRegion(region, animated: true)
+        }
+    }
+}
+
     // MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView,
                  viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
         guard annotation is MKPointAnnotation else { return nil }
+        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.annotationID) as? MKPinAnnotationView
+        
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation,
                                                  reuseIdentifier: Constants.annotationID)
