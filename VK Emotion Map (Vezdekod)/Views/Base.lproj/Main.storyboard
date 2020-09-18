@@ -18,6 +18,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="FBW-3d-MYN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="633"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="LGZ-gu-yTw"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANK-2L-ju1">
                                 <rect key="frame" x="0.0" y="608" width="375" height="170"/>

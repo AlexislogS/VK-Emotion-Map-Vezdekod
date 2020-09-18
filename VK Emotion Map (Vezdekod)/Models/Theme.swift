@@ -6,10 +6,11 @@
 //  Copyright © 2020 AlexislogS. All rights reserved.
 //
 
-import Foundation
+import CoreLocation
 
 struct Theme {
     let title: String
     let themeEmotion: String
     let emotion: String
+    let coordinate: CLLocationCoordinate2D
 }

@@ -16,6 +16,9 @@
 		EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A22514E10C0079E96E /* EmotionCell.swift */; };
 		EA8947A72514E3BF0079E96E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A62514E3BF0079E96E /* Theme.swift */; };
 		EA8947AB2514F2260079E96E /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947AA2514F2260079E96E /* Themes.swift */; };
+		EA8947AE251508330079E96E /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947AD251508330079E96E /* String+.swift */; };
+		EA8947B125150AC10079E96E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947B025150AC10079E96E /* Constants.swift */; };
+		EA8947B32515104C0079E96E /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947B22515104C0079E96E /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		EA8947A22514E10C0079E96E /* EmotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCell.swift; sourceTree = "<group>"; };
 		EA8947A62514E3BF0079E96E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		EA8947AA2514F2260079E96E /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		EA8947AD251508330079E96E /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		EA8947B025150AC10079E96E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EA8947B22515104C0079E96E /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,7 @@
 				EA8947A82514E4110079E96E /* Models */,
 				EA89479F2514C0BA0079E96E /* Views */,
 				EA89479E2514C0B40079E96E /* Controllers */,
+				EA8947AF251508500079E96E /* Extensions */,
 				EA8947A02514C0D10079E96E /* Resources */,
 				EA89479D2514C09C0079E96E /* Application */,
 				EA8947A12514C0DC0079E96E /* Configuration */,
@@ -101,6 +108,7 @@
 		EA8947A02514C0D10079E96E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA8947B025150AC10079E96E /* Constants.swift */,
 				EA8947AA2514F2260079E96E /* Themes.swift */,
 				EA8947922514B8430079E96E /* Assets.xcassets */,
 				EA8947942514B8430079E96E /* LaunchScreen.storyboard */,
@@ -130,6 +138,15 @@
 				EA8947A22514E10C0079E96E /* EmotionCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA8947AF251508500079E96E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EA8947AD251508330079E96E /* String+.swift */,
+				EA8947B22515104C0079E96E /* UIImage+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +225,10 @@
 				EA8947A72514E3BF0079E96E /* Theme.swift in Sources */,
 				EA8947AB2514F2260079E96E /* Themes.swift in Sources */,
 				EA89478C2514B8420079E96E /* SceneDelegate.swift in Sources */,
+				EA8947AE251508330079E96E /* String+.swift in Sources */,
+				EA8947B32515104C0079E96E /* UIImage+.swift in Sources */,
 				EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */,
+				EA8947B125150AC10079E96E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
