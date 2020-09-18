@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 final class MapViewController: UIViewController {
 
@@ -17,16 +18,18 @@ final class MapViewController: UIViewController {
             defaultEmotionsViewHight = emotionsViewHight.constant
         }
     }
+    
     @IBOutlet private weak var emotionMap: MKMapView!
     @IBOutlet private weak var emotionCollectionView: UICollectionView!
     @IBOutlet private weak var emotionSearch: UISearchBar!
     
+    private let regionInMeters = 10_000.0
     private var defaultEmotionsViewHight: CGFloat = 0
-    private var themes = [Theme]()
+    private let themes = Themes.getThemes
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        themes.append(Theme(title: "Музыка", themeEmotion: "🎧", emotion: "😂"))
+        showSPBMap()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleDidShow(notification:)),
                                                name: UITextField.keyboardDidShowNotification,
@@ -62,6 +65,15 @@ final class MapViewController: UIViewController {
         self.emotionView.layer.add(transition, forKey: kCATransition)
         completion()
     }
+    
+    private func showSPBMap() {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString("St. Petersburg") { (placemarks, error) in
+            if let location = placemarks?.first?.location?.coordinate {
+                self.emotionMap.setRegion(MKCoordinateRegion(center: location, latitudinalMeters: self.regionInMeters, longitudinalMeters: self.regionInMeters), animated: true)
+            }
+        }
+    }
 }
 
     // MARK: - UISearchBarDelegate
@@ -77,14 +89,23 @@ extension MapViewController: UISearchBarDelegate {
 
 extension MapViewController: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return themes.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmotionCell.reuseID, for: indexPath) as! EmotionCell
         let theme = themes[indexPath.item]
         cell.configure(with: theme)
         return cell
+    }
+}
+
+extension MapViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 96)
     }
 }

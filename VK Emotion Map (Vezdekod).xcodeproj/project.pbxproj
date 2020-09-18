@@ -15,6 +15,7 @@
 		EA8947962514B8430079E96E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA8947942514B8430079E96E /* LaunchScreen.storyboard */; };
 		EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A22514E10C0079E96E /* EmotionCell.swift */; };
 		EA8947A72514E3BF0079E96E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947A62514E3BF0079E96E /* Theme.swift */; };
+		EA8947AB2514F2260079E96E /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8947AA2514F2260079E96E /* Themes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		EA8947972514B8430079E96E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA8947A22514E10C0079E96E /* EmotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionCell.swift; sourceTree = "<group>"; };
 		EA8947A62514E3BF0079E96E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		EA8947AA2514F2260079E96E /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		EA8947A02514C0D10079E96E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EA8947AA2514F2260079E96E /* Themes.swift */,
 				EA8947922514B8430079E96E /* Assets.xcassets */,
 				EA8947942514B8430079E96E /* LaunchScreen.storyboard */,
 			);
@@ -203,6 +206,7 @@
 				EA89478E2514B8420079E96E /* MapViewController.swift in Sources */,
 				EA89478A2514B8420079E96E /* AppDelegate.swift in Sources */,
 				EA8947A72514E3BF0079E96E /* Theme.swift in Sources */,
+				EA8947AB2514F2260079E96E /* Themes.swift in Sources */,
 				EA89478C2514B8420079E96E /* SceneDelegate.swift in Sources */,
 				EA8947A32514E10C0079E96E /* EmotionCell.swift in Sources */,
 			);
