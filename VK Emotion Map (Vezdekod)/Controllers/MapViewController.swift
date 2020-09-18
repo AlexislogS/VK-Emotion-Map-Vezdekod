@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
+final class MapViewController: UIViewController {
 
+    @IBOutlet private weak var emotionMap: MKMapView!
+    @IBOutlet private weak var emotionCollectionView: UICollectionView!
+    @IBOutlet private weak var emotionSearch: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
 }
 
