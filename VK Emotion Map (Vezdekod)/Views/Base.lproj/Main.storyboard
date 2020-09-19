@@ -134,6 +134,10 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0TF-xg-wht" appends="YES" id="WWY-NK-x7W"/>
+                                    <outletCollection property="gestureRecognizers" destination="wcG-uR-1Xs" appends="YES" id="QSo-bk-mlE"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yv5-3c-jJO">
                                 <rect key="frame" x="327" y="96" width="32" height="32"/>
@@ -197,6 +201,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="0TF-xg-wht">
+                    <connections>
+                        <action selector="swipeUp:" destination="BYZ-38-t0r" id="bLf-c4-7w8"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="wcG-uR-1Xs">
+                    <connections>
+                        <action selector="swipeDown:" destination="BYZ-38-t0r" id="WqN-7S-956"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1128.8" y="93.842364532019715"/>
         </scene>

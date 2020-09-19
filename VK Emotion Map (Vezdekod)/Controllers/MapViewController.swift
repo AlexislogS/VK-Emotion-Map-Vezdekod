@@ -70,6 +70,18 @@ final class MapViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func swipeUp(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .recognized {
+            emotionSearch.becomeFirstResponder()
+        }
+    }
+    
+    @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .recognized {
+            emotionSearch.resignFirstResponder()
+        }
+    }
+    
     private func addAnimationToEmotionView(from: CATransitionSubtype,
                                            completion: () -> Void) {
         let transition = CATransition()
