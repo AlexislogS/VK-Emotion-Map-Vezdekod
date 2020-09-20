@@ -94,7 +94,8 @@ final class MapViewController: UIViewController {
     }
     
     private func showCity(name: String) {
-        CLGeocoder().geocodeAddressString(name) { (placemarks, error) in
+        CLGeocoder().geocodeAddressString(name) { [weak self] (placemarks, error) in
+            guard let self = self else { return }
             if let location = placemarks?.first?.location?.coordinate {
                 let regionInMeters = 10_000.0
                 self.defaultRegion = MKCoordinateRegion(center: location,
@@ -201,8 +202,8 @@ extension MapViewController: UICollectionViewDelegate {
                 emotionMap.setRegion(self.defaultRegion,
                                      animated: true)
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.emotionMap.setRegion(region, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.emotionMap.setRegion(region, animated: true)
             }
         }
         previousRow = indexPath.row
